@@ -17,11 +17,12 @@ func TestClient_Boxes(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(fmt.Sprint(tt), func(t *testing.T) {
-			gotResult, err := client.Boxes(tt.params)
+			gotResult, total, err := client.Boxes(tt.params)
 			if err != nil {
 				t.Error(err)
 			}
 			pretty.Println(gotResult) //nolint:errcheck
+			fmt.Println("total:", total)
 		})
 	}
 }

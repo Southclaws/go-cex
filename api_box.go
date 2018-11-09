@@ -60,7 +60,7 @@ type BoxesParams struct {
 }
 
 // Boxes returns product boxes from the given search parameters
-func (client *Client) Boxes(params BoxesParams) (result []Box, err error) {
+func (client *Client) Boxes(params BoxesParams) (result []Box, total int, err error) {
 	q, err := qstring.Marshal(&params)
 	if err != nil {
 		return
@@ -71,7 +71,7 @@ func (client *Client) Boxes(params BoxesParams) (result []Box, err error) {
 		var superCatIDList []byte
 		superCatIDList, err = json.Marshal(params.SuperCatIDs)
 		if err != nil {
-			return nil, err
+			return nil, 0, err
 		}
 		q.Set("superCatIds", string(superCatIDList))
 	}
@@ -79,7 +79,7 @@ func (client *Client) Boxes(params BoxesParams) (result []Box, err error) {
 		var categoryIDList []byte
 		categoryIDList, err = json.Marshal(params.CategoryIDs)
 		if err != nil {
-			return nil, err
+			return nil, 0, err
 		}
 		q.Set("categoryIds", string(categoryIDList))
 	}
@@ -89,5 +89,5 @@ func (client *Client) Boxes(params BoxesParams) (result []Box, err error) {
 		return
 	}
 
-	return payload.Data.Boxes, nil
+	return payload.Data.Boxes, payload.Data.TotalRecords, nil
 }
