@@ -51,6 +51,7 @@ type BoxesParams struct {
 	// One of these must be present
 	SuperCatIDs []int `qstring:"superCatIds"` // super category ID
 	CategoryIDs []int `qstring:"categoryIds"` // category ID
+	BoxID       int   `qstring:"q"`           // box ID
 
 	// These are all optional
 	FirstRecord int    `qstring:"firstRecord,omitempty"` // default: 50, basically a database OFFSET
