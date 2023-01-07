@@ -9,7 +9,6 @@ package cex
 // - Phones (4)
 // - Electronics (5)
 // - Music (8)
-//
 type SuperCat struct {
 	SuperCatID           int    `json:"superCatId"`
 	SuperCatFriendlyName string `json:"superCatFriendlyName"`
