@@ -10,6 +10,7 @@ import (
 type Box struct {
 	BoxID                string    `json:"boxId"`
 	BoxName              string    `json:"boxName"`
+	BoxDescription       string    `json:"boxDescription"`
 	IsMasterBox          int       `json:"isMasterBox"`
 	CategoryID           int       `json:"categoryId"`
 	CategoryName         string    `json:"categoryName"`
@@ -23,7 +24,12 @@ type Box struct {
 	SellPrice            float64   `json:"sellPrice"`
 	CashPrice            float64   `json:"cashPrice"`
 	ExchangePrice        float64   `json:"exchangePrice"`
+	FirstPrice           int       `json:"firstPrice"`
+	PreviousPrice        int       `json:"previousPrice"`
+	LastPriceUpdatedDate string    `json:"lastPriceUpdatedDate"`
 	BoxRating            float64   `json:"boxRating"`
+	CollectionQuantity   int       `json:"collectionQuantity"`
+	EcomQuantityOnHand   int       `json:"ecomQuantityOnHand"`
 	OutOfStock           int       `json:"outOfStock"`
 	OutOfEcomStock       int       `json:"outOfEcomStock"`
 }
@@ -49,9 +55,9 @@ var (
 // BoxesParams represents the URL query parameters for the Boxes endpoint
 type BoxesParams struct {
 	// One of these must be present
-	SuperCatIDs []int `qstring:"superCatIds"` // super category ID
-	CategoryIDs []int `qstring:"categoryIds"` // category ID
-	BoxID       string   `qstring:"q"`           // box ID
+	SuperCatIDs []int  `qstring:"superCatIds"` // super category ID
+	CategoryIDs []int  `qstring:"categoryIds"` // category ID
+	BoxID       string `qstring:"q"`           // box ID
 
 	// These are all optional
 	FirstRecord int    `qstring:"firstRecord,omitempty"` // default: 50, basically a database OFFSET
